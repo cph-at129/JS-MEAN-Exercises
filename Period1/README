@@ -1,0 +1,9 @@
+Exam Preparation exercises
+
+The different files that are uploaded, are code samples that can be used for demonstration at the JS Mean exam:
+
+1) variableHostingExample.js   -> shows how variables and functions are hoisted in javascript
+2) reusableModulesWithClosures.js ->  function closures and the javascript module pattern
+3) iifeExample.js -> Immediately invoked function expressions
+4) the three files magicOfCallbacks-ex-1/2/3 ->  user defined callback functions
+5) prototypes.js ->  javascript prototyping
