@@ -1,0 +1,8 @@
+extends layout
+
+block content
+	h3 Here you can add a new joke
+		form(method='POST' action='/addjoke')
+			input(type='text', name='newjoke' placeholder='type in your joke')
+			input(type='submit', value='Submit')
+		

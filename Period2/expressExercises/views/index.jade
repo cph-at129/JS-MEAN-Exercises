@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	p #{notification}
+	p #{loginSuccessful}
+	h1= title
+	p Welcome to #{title}
+	p 
+		a(href='/login') Click here to login
+	p
+		a(href='/jokes') Click here to get a random joke
+	p
+		a(href='/alljokes') Click here to get all jokes
+	p
+		a(href='/jokesForm') Click to add a new joke	
+

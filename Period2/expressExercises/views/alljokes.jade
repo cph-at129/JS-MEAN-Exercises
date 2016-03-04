@@ -1,0 +1,8 @@
+extends layout
+
+block content
+	h3 All jokes
+		ul
+			each val in allJokes
+				li= val
+	a(href='/') Go home			
