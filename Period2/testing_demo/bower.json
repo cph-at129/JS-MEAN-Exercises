@@ -1,0 +1,23 @@
+{
+  "name": "test",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Aleksandar Terziev <a.terziev1415@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "mocha": "^2.4.5",
+    "chai": "^3.5.0",
+    "sinon-chai": "^2.8.0"
+  }
+}
