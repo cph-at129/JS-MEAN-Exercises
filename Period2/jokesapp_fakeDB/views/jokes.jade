@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  .row
+    p.alert-warning Number of Visits: #{visits}  
+  .row  
+    p.alert-success #{notification}
+  .row
+    if Array.isArray(jokes) 
+      ul.list-group
+        each joke in jokes
+          li.list-group-item.list-group-item-warning= joke
+    else 
+      ul.list-group
+        li.list-group-item.list-group-item-warning= jokes
+  
+  .row
+    a.btn.btn-info(href='/api') Go back          

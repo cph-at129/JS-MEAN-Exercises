@@ -1,0 +1,47 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+    link(href='../stylesheets/bootstrap.css', rel='stylesheet')
+    title= title
+  body
+    nav.navbar.navbar-inverse.navbar-fixed-top
+      .container
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/') Jokes
+        //- #navbar.navbar-collapse.collapse
+        //-   form.navbar-form.navbar-right
+        //-     .form-group
+        //-       input.form-control(type='text', placeholder='Username')
+        //-     .form-group
+        //-       input.form-control(type='password', placeholder='Password')
+        //-     button.btn.btn-success(type='submit') Sign in
+
+    .jumbotron
+      .container
+        h1 So funny jokes
+    .container           
+      block content
+
+
+    hr
+    footer
+      p © 2016 COS2014 Cphbusiness    
+
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+    script(src='../javascripts/bootstrap.js')    
+
+
+
+
+
+    
