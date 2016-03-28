@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  //- .row
+  //-   p.alert-warning Number of Visits: #{visits}  
+  .row  
+    p.alert-success #{notification}
+  .row
+    if(jokeEditor != undefined || jokeEditor != null)
+      form(method='POST' action='/api/deleteJoke')
+        .col-md-10
+          fieldset(disabled='')
+            input(type='hidden' name='jokeToDelete_id' value=jokeEditor._id)
+            input.form-control(type='text', name='jokeToDelete' value=jokeEditor.joke)
+        .col-md-1  
+          button.btn.btn-danger(type='submit') delete
+      form(method='POST' action='/api/editJoke')
+        .col-md-10
+          input(type='hidden' name='jokeToEdit_id' value=jokeEditor._id)
+          input.form-control(type='text', name='jokeToEdit' value=jokeEditor.joke)
+        .col-md-1  
+          button.btn.btn-warning(type='submit') edit
+  .row  
+    if Array.isArray(jokes)
+      ul.list-group
+        each joke in jokes
+          .row
+
+            .col-md-10
+              li.list-group-item.list-group-item-warning= joke.joke 
+            .col-md-1
+              form(method='POST' action='/api/jokeEditor')
+                input(type='hidden' name='jokeToEdit_id' value="" + joke._id)
+                button.btn.btn-danger(type='submit') delete
+            .col-md-1 
+              form(method='POST' action='/api/jokeEditor')
+                input(type='hidden' name='jokeToEdit_id' value="" + joke._id)
+                button.btn.btn-warning(type='submit') edit
+    else if(jokes != undefined)
+      ul.list-group
+        li.list-group-item.list-group-item-warning= jokes.joke
+  
+  .row
+    a.btn.btn-info(href='/api') Go back          

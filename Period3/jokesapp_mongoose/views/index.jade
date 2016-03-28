@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  .row
+    div.alert.alert-warning
+      h2 Welcome #{userName}! 	
+  .row
+    div.alert.alert-success
+      p Check out our Joke API
+  .row
+    a.btn.btn-default(href='/api') Go to jokes api

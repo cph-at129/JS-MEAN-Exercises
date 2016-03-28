@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  .row
+    div.alert.alert-info
+      h3 Create your joke and submit it ;)
+  .row
+    form(method='POST' action='/api/joke')
+      label(for='newjoke') New Joke:
+      textarea.form-control(name='newjoke' rows='5' id='newjoke')
+      div
+        button.btn.btn-success(type='submit') Submit
+        
+  .row
+    a.btn.btn-info(href='/api') Go back      	
+

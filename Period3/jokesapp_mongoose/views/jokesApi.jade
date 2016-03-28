@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to Jokes Api
+    .col-md-2
+      a.btn.btn-default(href='/api/jokes') Get all jokes
+    .col-md-2
+      a.btn.btn-info(href='/api/search') Search for a joke  
+    .col-md-2
+      a.btn.btn-info(href='/api/random') Random joke
+    .col-md-2
+      a.btn.btn-default(href='/api/createJoke') Create a joke
+    .col-md-2  	
+      a.btn.btn-info(href='/') Go back

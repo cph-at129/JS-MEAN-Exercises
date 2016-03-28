@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  div.col-xs-4
+    form(method='POST' action='/login')
+      label(for='userName') Username
+      input.form-control(name='userName' id='userName' type='text') 
+      button.btn.btn-info(type='submit') Log in

@@ -1,0 +1,58 @@
+extends layout
+
+block content
+  .row
+    div.alert.alert-info
+      h3 Search for a joke
+      
+  form(method='POST' action='/api/jokeSearch')
+    .row
+      .col-xs-2
+        select.form-control(name='searchType')
+          option(value='id') ID
+          option(value='type') Type
+          option(value='author') Author
+      .col-xs-2  
+        input.form-control(type='text' name='searchInput' placeholder='search for..')
+      .col-xs-2 
+        input.btn.btn-default(type='submit' value='Search')    
+  hr 
+
+  .row 
+    .col-xs-4 
+      ul Joke Ids: 
+        li 56ed565b33408d21764f38b2
+        li 56ed565b33408d21764f38b3
+        li 56ed565b33408d21764f38b4
+    .col-xs-4 
+      ul Joke Types: 
+        li short
+        li alcohol
+        li quote
+        li joke
+    .col-xs-4 
+      ul Joke Authors: 
+        li Unknown
+        li Someone
+        li Pesho       
+  .row  
+    p.alert-success #{notification}
+  .row
+    if jokes != undefined
+      if Array.isArray(jokes)
+        ul.list-group
+          each joke in jokes
+            .row
+              .col-md-10
+                li.list-group-item.list-group-item-warning= joke.joke
+              .col-md-1  
+                a.btn.btn-danger(href='#') delete
+              .col-md-1  
+                a.btn.btn-warning(href='#') edit  
+                        
+      else 
+        ul.list-group
+          li.list-group-item.list-group-item-warning= jokes.joke
+
+  .row
+    a.btn.btn-info(href='/api') Go back  
