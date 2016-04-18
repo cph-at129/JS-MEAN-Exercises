@@ -7,20 +7,116 @@
 <======    Explain polling and long-polling strategies, their pros and cons  ====================>
 ------------------------------------------------------------------------------------------------------------------
 
+Regular HTTP:
+    - A client requests a webpage from a server.
+    - The server calculates the response
+    - The server sends the response to the client.
 
-
+ 1)  Polling -> 
+      -  A client requests a webpage from a server using regular HTTP
+      -  The requested webpage executes JavaScript which requests a file from the server at regular intervals
+      -  The server calculates each response and sends it back
+      
+    Pros and Cons:
+      -  The main goal of using polling is to keep clients up-to-date with data arriving or changing on the server side
+         As an example, a chat based application will poll the server every 10 seconds to see if new chat messages are available. 
+         Technically, it means the browser will open a connection to the server every time data are required
+      -  The number of requests made to the server can be extremely high if the frequency of polling is set to a small value
+         This will lead to really bad performance when handling many users. 
+      -  if there is no data on the server, the response will not contain any data. 
+         Doing such “void” request overload the server for nothing  
+    
+  2) Long Polling ->
+      -  A client requests a webpage from a server using regular HTTP
+      -  The requested webpage executes JavaScript which requests a resource from the server
+      -  The server does not immediately respond but waits until there's new information available
+      -  When there's new information available, the server responds with the new information
+      -  The client receives the new information and immediately sends another request to the server.
+    
+    Pros and Cons:
+      - With long polling, you open a persistent connection and wait for the server to push data when available.
+      - If your server support asynchronous request processing, then you are possibly in a good shape. 
+        If not, then long polling might give extremely bad results. Why? 
+        if 10 000 AJAX applications open one long polled connection, that means 10 000 threads will blocks waiting for data to come.
+      - If the server can’t push data fast enough, the AJAX application might not be updated as fast as you expect.
+      - if the server receives a lot of update, you might ends up in a situation where your are mostly doing the polling technique 
+        as your request is never parked because the server always execute pushes
+    
+    Long Polling Example:
+          // Long Polling (Recommened Technique - Creates An Open Connection To Server ∴ Fast)
+          (function poll(){
+              $.ajax({ url: "server", success: function(data){
+                //Update your dashboard gauge
+                salesGauge.setValue(data.value);
+              }, dataType: "json", complete: poll, timeout: 30000 });
+          })();
+          
+    Traditional Polling Example:
+          // The setInterval Technique (Not Recommended - Creates Queues of Requests ∴ Can Be Slow)
+              setInterval(function(){
+                  $.ajax({ url: "server", success: function(data){
+                      //Update your dashboard gauge
+                      salesGauge.setValue(data.value);
+                  }, dataType: "json"});
+              }, 30000);
 
 <===========   What is HTTP streaming, SSE (Server sent events)?  ========================>
 --------------------------------------------------------------------------------------------------------------------
 
-
-
-
+    - A client requests a webpage from a server using regular HTTP
+    - The requested webpage executes javascript which opens a connection to the server
+    - The server sends an event to the client when there's new information available
+    
+    Pros and Cons:
+      - Real-time traffic from server to client, mostly that's what you'll need
+      - Not possible to connect with a server from another domain /CORS/
+      - SSE not supported in IE and Edge
+      - If your real-time data is sourced from your web site, 
+        and the user doesn’t interact in real-time, it’s likely you need Server-Sent Events
+    Example:
+        //generate an EventSource object
+        //!!!!  EventSource is not supported by all browsers
+      var evtSource = new EventSource("//api.example.com/ssedemo.php", { withCredentials: true } );
+        //listens for incoming messages
+      evtSource.onmessage = function(e) {
+            var newElement = document.createElement("li");
+            
+            newElement.innerHTML = "message: " + e.data;
+            eventList.appendChild(newElement);
+      }
+      
 <=======   What is WebSocket protocol, how is it different from HTTP communication, what advantages it has over  HTTP?  ========>
 -------------------------------------------------------------------------------------------------------------------------------
 
+  1) Why do we need web sockets?
+      - We need a better way for web applications running on a client browser to communicate in real time with their servers
 
-
+  2) What is it?
+      - It uses its own protocol
+      - it also has an API which can be used by web applications to open and close connections and to send and receive messages
+      - With WebSockets you can have full duplex bi-directional communication between 
+        the server and the client with less overhead than traditional HTTP based methods
+      - it could reduce the size of HTTP header traffic and reduce network latency
+      - Server and client are equal 
+      - No request -> response pattern.
+    3) How does it work?
+      - Before the client and the server start sending and receiving messages, they need to establish a connection first
+      - This is done by establishing a ‘handshake’, where the client sends out a request to connect, 
+        and if the server wants, it will send out a response accepting the connection
+    
+    Example:
+                Server                                                        Client
+        var app = require('express')();                         <body>
+        var http = require('http').Server(app);                     <ul id="messages"></ul>
+                                                                    <form action="">
+        app.get('/', function(req, res){                              <input id="m" autocomplete="off" /><button>Send</button>
+          res.sendFile(__dirname + '/index.html');                  </form>
+        });                                                         <script src="/socket.io/socket.io.js"></script>    
+                                                                    <script> var socket = io(); </script>
+        http.listen(3000, function(){                             </body>
+          console.log('listening on *:3000');
+        });
+      
 
 
 <========  Explain what the WebSocket Protocol brings to the Web-world.  ==================>
