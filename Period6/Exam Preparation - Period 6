@@ -1,0 +1,104 @@
+==============================  Period-6 Hybrid App Development ===================================
+--------------------------------------------------------------------------------------------------------
+                                Explain the concept of Hybrid Mobile App Development
+---------------------------------------------------------------------------------------------------
+  - Hybrid Apps make it possible to embed HTML5 apps inside a thin native container, 
+  combining the best (and worst) elements of Native and HTML5 apps.
+ - Hybrid applications are web applications (or web pages) in the native browser
+ - Hybrid apps are developed using HTML, CSS and Javascript, and then wrapped in a native application using platforms like Cordova
+ - 
+
+=====================================================================================================
+                                Explain the Pros & Cons of using Hybrid Mobile App Development
+                                      compared to Native App Development
+ ------------------------------------------------------------------------------------------------------------
+ Pros: Hybrid Mobile apps-----------------------------
+ - Hybrid apps allow you to use any web-native framework you want, and there are plenty of these
+ - The application development is faster, simpler, more rapid and the application is easier to maintain
+ - You can change platforms anytime you need, Cordova lets you build your application for more than one 
+ platform just by one adding line of code
+ - As for the phone hardware such as the camera or Bluetooth, Cordova has a large repository of plugins you may use
+ Cons: Hybrid Mobile apps--------------------
+ - The main problem with hybrid apps is that they still depend on the native browser, 
+ which means they are not as fast as native apps
+ ================================
+ Pros: Native Mobile apps--------------------
+ - The main advantage of native applications is their performance. 
+ Native apps are compiled into machine code (Dalvik byte code under Android), 
+ which gives the best performance you can get from the mobile phone
+ - Best performance includes fast and fluid animations as well as full access to phone hardware, 
+ multi touch support and the latest APIs
+ Cons: Native Mobile apps-----------------
+ - Native development is far from easy
+ - code must be written specifically for each platform, the same code will have to largely be rewritten 
+ with little able to be shared.
+ - The logic may be the same, but the language, APIs and the development process is different. 
+ This process can be relatively long for complex applications
+ 
+ ==============================================================================================================
+                                Explain about the "building blocks" involved in an ionic Hybrid Application
+ ----------------------------------------------------------------------------------------------------------------
+ http://cordova.apache.org/docs/en/latest/guide/overview/index.html
+ 
+ - Ionic apps are built with Cordova. Cordova is a means of packaging html/css/js into apps that can run on mobile and 
+ desktop devices and provides a plugin architecture for accessing native functionality beyond the reach of JS run from a web browser. 
+ As such, Ionic apps have the Cordova file structure.
+ - There are several components to a cordova application:
+    - WebView: ---------------------
+        The Cordova-enabled WebView may provide the application with its entire user interface
+    - Web App -------------------------------
+        This is the part where your application code resides.
+        The application itself is implemented as a web page, by default a local file named index.html, 
+        that references CSS, JavaScript, images, media files, or other resources are necessary for it to run.
+        The app executes in a WebView within the native application wrapper, which you distribute to app stores
+        This container has a very crucial file - config.xml file that provides information about the app and 
+        specifies parameters affecting how it works, such as whether it responds to orientation shifts
+    - Plugins -------------------------------------
+        They provide an interface for Cordova and native components to communicate with each other and bindings 
+        to standard device APIs. This enables you to invoke native code from JavaScript.
+        Apache Cordova project maintains a set of plugins called the Core Plugins. These core plugins provide your application 
+        to access device capabilities such as battery, camera, contacts, etc.
+===============================================================================================================================
+                        Explain and demonstrate ways to debug Hybrid Mobile Applications Running on a real device
+  ----------------------------------------------------------------------------------------------------------------------
+  - Connect your mobile and (if not already done) install the app
+  - Open Chrome and type: chrome://inspect/#devices
+  - Press inspect and start debugging
+=====================================================================================================================
+                      Explain when and why CORS is a problem for Hybrid Mobile Applications
+----------------------------------------------------------------------------------------------------------------
+ http://blog.ionic.io/handling-cors-issues-in-ionic/
+ 
+ - CORS = Cross origin resource sharing.
+ - Say we send an AJAX request to http://cors.api.com/api, your host origin / mywebsite.com /
+ will be specified by the Origin header that is automatically included for CORS requests by the browser.
+ Since mywebsite.com does not match the host of api.com, our request from mywebsite.com must ask the server for approval 
+ before we can access the resource, in the form of an HTTP OPTIONS request header.
+ If we get the error: 
+          XMLHttpRequest cannot load http://cors.api.com/api.
+          No 'Access-Control-Allow-Origin' header is present on the requested resource.
+          Origin 'http://mywebsite.com' is therefore not allowed access.
+- Running in the browser  - >   ionic serve              origin will be localhost:8100       PROBLEMS WITH CORS               
+        Any AJAX request sent out to a host other than localhost:8100 will have localhost:8100 as its origin 
+        and thus will require a CORS preflight request to see if it can access the resource.
+- Running on a device   - >  ionic run    NO PROBLEMS wih CORS         
+        1) Your files for the app are copied to the device (or simulator).
+        2) The app runs, thus firing a browser on the phone/simulator to run the files that were copied over, 
+        something like: file://some/path/www/index.html.
+        Your origin will not exist, since you are running off of a file:// URI; 
+    Solutions:
+      1) allow all origins from your API endpoint
+      2) using a proxy server
+=====================================================================================================================
+                          Explain how and why it is possible for a Hybrid Application to access native 
+                                              phone devices like location, calendar etc.
+  -------------------------------------------------------------------------------------------------------------
+  
+  
+  
+  ======================================================================================================================
+                            Explain using an example the "fundamentals" of an ionic application
+  -------------------------------------------------------------------------------------------------------------
+  
+
+        
