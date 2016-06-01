@@ -1,0 +1,52 @@
+<div class='container'>
+    <div class='row'>
+        
+        <div class='alert alert-info'>
+            <p>Welcome to Jokes Api</p>
+        </div>
+        <div class="alert alert-danger" ng-show="error">{{ error }}</div>
+    </div>
+    <div class='row'>
+        <div class="col-md-2"><a ng-click="getAllJokes()" class="btn btn-default">Get all jokes</a></div>
+        <div class="col-md-2"><a href="/api/search" class="btn btn-info">Search for a joke  </a></div>
+        <div class="col-md-2"><a href="/api/random" class="btn btn-info">Random joke</a></div>
+        <div class="col-md-2"><a ng-click="showJokeTemplate=true;clearView();" class="btn btn-default">Create a joke</a></div>
+        <div class="col-md-2"> <a href="/" class="btn btn-info">Go back</a></div>
+    </div>
+    <hr/>
+    <div class='row' ng-show='showAllJokes'>
+        <ul class="list-group">
+            <div ng-repeat='joke in jokes track by $index'>
+                <div class='row'>
+                    <div class="col-md-10">
+                        <li class="list-group-item list-group-item-warning"> {{ joke.jokeText }} </li>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-danger" ng-click='deleteJoke(joke)'>delete</button>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-warning" ng-click='editJoke(joke)'>edit</button>
+                    </div>
+                </div>
+            </div>
+        </ul>
+    </div>
+    <div class='row' ng-show='showJokeTemplate'>
+        <div class="row">
+            <div class="alert alert-info">
+                <h3>Create your joke and submit it ;)</h3>
+            </div>
+        </div>
+        <div class="row">
+            <form method="POST" ng-submit="createJoke()">
+                <label for="newjoke">New Joke:</label>
+                <textarea required ng-model="jokeText" rows="5" id="newjoke" class="form-control"></textarea>
+                <div>
+                    <!--<button type="submit" class="btn btn-success" ng-disabled="!createJoke-form.$valid">Submit</button>-->
+                    <input class="btn submit-btn pull-left" ng-disabled="!createJoke-form.$valid" type="submit" value="Create" />
+                </div>
+            </form>
+            <a href="#/view2" class="btn btn-warning pull-right" ng-click='showJokeTemplate=false'>Cancel</a>
+        </div>
+    </div>
+</div>

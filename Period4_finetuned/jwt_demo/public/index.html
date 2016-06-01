@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Angular Authentication</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script src="app/myApp.js"></script>
+</head>
+
+<body ng-app="myApp">
+  <div ng-controller="UserCtrl">
+    <div class="container">
+      <div class="jumbotron">
+        <h3>JWT demo</h3>
+      </div>
+      <div class="row alert alert-danger" ng-show="error">
+        <p>{{error}}</p>
+      </div>
+      <div class="row">
+        <span ng-show="isAuthenticated">{{welcome}}</span>
+
+        <form ng-show="!isAuthenticated" ng-submit="submit()">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input class="form-control" ng-model="user.username" id="username" type="text" name="user" placeholder="Username" />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" ng-model="user.password" id="password" type="password" name="pass" placeholder="Password" />
+          </div>
+          <input type="submit" class="btn btn-info" value="Login" />
+
+        </form>
+
+        <div ng-show="isAuthenticated" class="row alert alert-warning">
+          <a ng-click="callRestricted()" href="" btn btn-warning>Shh, this is private!</a>
+          <br>
+          <div>{{message}}</div>
+          <a ng-click="logout()" href="" class="btn btn-info">Logout</a>
+        </div>
+      </div>
+
+      <!-- Debug Info -->
+      <div class="row alert alert-success" ng-show="debugInfo.length">
+        <p ng-repeat="msg in debugInfo">{{msg}} </p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

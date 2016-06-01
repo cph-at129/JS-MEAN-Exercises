@@ -1,0 +1,12 @@
+<div class="alert alert-danger" role="alert" ng-show="error"></div>
+<div class="alert alert-success" role="alert" ng-show="systemMessage">{{systemMessage}}</div>
+<div ng-hide='isRegistered'>
+    <form class="form-auth" ng-submit="register()">
+        <h2>Register</h2>
+        <input type="username" ng-model="newUser.username" placeholder="Username" class="form-control">
+        <br>
+        <input type="password" ng-model="newUser.password" placeholder="Password" class="form-control">
+        <br>
+        <input type="submit" value="Register" class="btn btn-primary" />
+    </form>
+</div>
