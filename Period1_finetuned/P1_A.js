@@ -36,7 +36,7 @@
                  function nested() { return "And so am I!"; }
                  return "Hi!  I'm a strict mode function!  " + nested();
             }
-function notStrict() { return "I'm not strict."; }        
+            function notStrict() { return "I'm not strict."; }        
         
     Changes in strict mode:
             Strict mode changes both syntax and runtime behavior
@@ -50,6 +50,7 @@ function notStrict() { return "I'm not strict."; }
 function useStrictRefErr() {
     "use strict";
     // Assuming a global variable mistypedVariable exists
+    var mistypedVariable = 16;
     mistypedVaraible = 17;// this line throws a ReferenceError due to the misspelling of variable
 }
 console.log("Use strict reference error");
@@ -82,23 +83,25 @@ function varHoisting() {
     var myVar = "Now I am defined";
     console.log(myVar);
 }
+console.log("=============================================");
 console.log("Variable hoisting");
 varHoisting();
 
 function hoistingDemo1() {
-    console.log("Value of myCoolObject: " + myCoolObject);
+    console.log("Value of myCoolObject: " + myCoolObject); //undefined
 
     if (!myCoolObject) {
         var myCoolObject = { value: "Wau, I'm cool" };
-        console.log(myCoolObject.value);
+        console.log(myCoolObject.value); //Wau, I'm cool
     }
 }
+console.log("==============================");
 console.log("Hoisting demo 1");
 hoistingDemo1();
 
 function hoistingDemo2() {
     f1();
-    f2(); //f2 is not a function error
+    //f2(); //f2 is not a function error
 
     function f1() {
         console.log("I'm f1");
@@ -201,6 +204,7 @@ if (data) {
 if (data) {
     (function () {
         var temp = "tempVar";//now temp exists only between the iife scope
+        //.. do sth with temp here
     } ());
 } else {
     //............

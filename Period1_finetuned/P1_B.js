@@ -25,8 +25,9 @@ console.log("-----------  Function Closures and the JavaScript Module Pattern  -
  *      - A function
  *      - The environment in which that function was created. The environment consists of 
  *      any local variables that were in-scope at the time that the closure was created
- *      - With closures, scopes always keep access to the outer scope, in which they were defined
- *      - Since the only scoping that JavaScript has is function scope, all functions, by default, act as closures
+ * 
+ * With closures, scopes always keep access to the outer scope, in which they were defined
+ * Since the only scoping that JavaScript has is function scope, all functions, by default, act as closures
  * 
  * 
  */
@@ -65,8 +66,9 @@ function closureExample1() {
 closureExample1();
 
 console.log("==========================================");
-console.log("Closure example 2");
-function closureExample2() {
+console.log("IIFE example");
+function iifeExample() {
+    
     //the following will print i 10 times!!!
     for (var i = 0; i < 10; i++) {
         setTimeout(function () {//The anonymous function keeps a reference to i
@@ -86,7 +88,7 @@ function closureExample2() {
         })(i);
     }
 }
-closureExample2();
+iifeExample();
 
 /* Closures - The module pattern
  *      - provide a native way of creating private methods
